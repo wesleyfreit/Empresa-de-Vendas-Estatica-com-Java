@@ -10,8 +10,12 @@ public class Dados extends Produto {
     public Dados() {
     }
 
-    public Dados(int id, String nomeProduto, int quantidade, double valor) {
-        super(id, nomeProduto, quantidade, valor);
+    public Dados(int id, String nomeProduto, int quantidade, double valor, int tipo) {
+        super(id, nomeProduto, quantidade, valor, tipo);
+    }
+
+    public Dados(int id, String nomeProduto, int quantidade, double valor, int tipoProduto, String numeracao) {
+        super(id, nomeProduto, quantidade, valor, tipoProduto, numeracao);
     }
 
     public void cadastroProduto(Produto produto) {
