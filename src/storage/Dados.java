@@ -1,7 +1,6 @@
 package storage;
 
 import registration.Produto;
-
 import java.util.ArrayList;
 
 public class Dados extends Produto {

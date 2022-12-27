@@ -1,12 +1,13 @@
 import storage.Dados;
 import menu.*;
-
 import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
+
         Dados dados = new Dados();
         boolean run = true;
         int id = 1;
+
         try (Scanner scanner = new Scanner(System.in)) {
             do {
                 System.out.println(
