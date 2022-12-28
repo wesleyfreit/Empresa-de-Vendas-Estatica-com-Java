@@ -10,21 +10,31 @@ public abstract class Produto implements Perfume, Roupa {
     private int quantidade = 0;
     private double valor;
     private String tipoProduto;
-    private String numeracao;
+    private char tipoPublico;
+    private String tamanhoRoupa;
+    private String tipoPerfume;
+    
 
     public Produto() {
     }
 
-    public Produto(int id, String nomeProduto, int quantidade, double valor, int tipoProduto) {
+    public Produto(int id, String nomeProduto, int quantidade, double valor, int tipoProduto, char tipoPublico) {
         this.id = id;
         this.nomeProduto = nomeProduto;
         this.quantidade = quantidade;
         this.valor = valor;
+        this.tipoProduto = setTipoProduto(tipoProduto);
+        this.tipoPublico = tipoPublico;
     }
 
-    public Produto(int id, String nomeProduto, int quantidade, double valor, int tipoProduto, String numeracao) {
-        this(id, nomeProduto, quantidade, valor, tipoProduto);
-        this.numeracao = numeracao;
+    public Produto(int id, String nomeProduto, int quantidade, double valor, int tipoProduto, char tipoPublico, String tamanhoRoupa) {
+        this(id, nomeProduto, quantidade, valor, tipoProduto, tipoPublico);
+        this.tamanhoRoupa = tamanhoRoupa;
+    }
+
+    public Produto(int id, String nomeProduto, int quantidade, double valor, int tipoProduto, char tipoPublico, char tipoPerfume) {
+        this(id, nomeProduto, quantidade, valor, tipoProduto, tipoPublico);
+        this.tipoPerfume = setTipoPerfume(tipoPerfume);
     }
 
     public double getValor() {
@@ -59,7 +69,7 @@ public abstract class Produto implements Perfume, Roupa {
         this.quantidade += quantidade;
     }
 
-    public String getTipoProduto(){
+    public String getTipoProduto() {
         return tipoProduto;
     }
 
@@ -67,12 +77,27 @@ public abstract class Produto implements Perfume, Roupa {
         return this.tipoProduto = (tipoProduto == Perfume.tipo) ? Perfume.nome : Roupa.nome;
     }
 
-    public void setTamanhoRoupa(String numeracao) {
-        this.numeracao = numeracao;   
+    public char getPublico() {
+        return tipoPublico;
+    }
+
+    public void setPublico(char tipoPublico) {
+        this.tipoPublico = tipoPublico;
+    }
+
+    public void setTamanhoRoupa(String tamanhoRoupa) {
+        this.tamanhoRoupa = tamanhoRoupa;   
     }
     
     public String getTamanhoRoupa() {
-        return numeracao;
+        return tamanhoRoupa;
     }
 
+    public String setTipoPerfume(char tipoPerfume) {
+        return this.tipoPerfume = (tipoPerfume == Perfume.tipoPerfume1) ? Perfume.suave : Perfume.forte;
+    }
+
+    public String getTipoPerfume() {
+        return tipoPerfume;
+    }
 }
