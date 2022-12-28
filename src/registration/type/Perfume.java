@@ -4,13 +4,11 @@ public interface Perfume {
     int tipo = 1;
     String nome = "Perfume";
 
-    char tipoPerfume1 = 'S';
-    char tipoPerfume2 = 'F';
-
-    String suave = "Suave";
-    String forte = "Forte";
+    Character[] tipos = {'F', 'H', 'C', 'A', 'E', 'T'};
+    String[] tiposFull = {"Floral", "Herbal", "Cítrico", "Amadeirado", "Especiaria","Terroso"};
     
-    String setTipoPerfume(char tipoPerfume);
+    String setTipoPerfume(Character tipoPerfume);
     String getTipoPerfume();
+    void getTiposPerfume();
 
 }

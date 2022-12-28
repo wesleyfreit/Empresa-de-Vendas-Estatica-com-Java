@@ -18,23 +18,22 @@ public abstract class Produto implements Perfume, Roupa {
     public Produto() {
     }
 
-    public Produto(int id, String nomeProduto, int quantidade, double valor, int tipoProduto, char tipoPublico) {
+    public Produto(int id, String nomeProduto, int quantidade, double valor, String tipoProduto, char tipoPublico) {
         this.id = id;
         this.nomeProduto = nomeProduto;
         this.quantidade = quantidade;
         this.valor = valor;
-        this.tipoProduto = setTipoProduto(tipoProduto);
+        this.tipoProduto = tipoProduto;
         this.tipoPublico = tipoPublico;
     }
 
-    public Produto(int id, String nomeProduto, int quantidade, double valor, int tipoProduto, char tipoPublico, String tamanhoRoupa) {
+    public Produto(int id, String nomeProduto, int quantidade, double valor, String tipoProduto, char tipoPublico, String tipoTamanho) {
         this(id, nomeProduto, quantidade, valor, tipoProduto, tipoPublico);
-        this.tamanhoRoupa = tamanhoRoupa;
-    }
-
-    public Produto(int id, String nomeProduto, int quantidade, double valor, int tipoProduto, char tipoPublico, char tipoPerfume) {
-        this(id, nomeProduto, quantidade, valor, tipoProduto, tipoPublico);
-        this.tipoPerfume = setTipoPerfume(tipoPerfume);
+        if(tipoProduto == Roupa.nome){
+            this.tamanhoRoupa = tipoTamanho;
+        } else {
+            this.tipoPerfume = tipoTamanho;
+        }
     }
 
     public double getValor() {
@@ -74,7 +73,10 @@ public abstract class Produto implements Perfume, Roupa {
     }
 
     public String setTipoProduto(int tipoProduto) {
-        return this.tipoProduto = (tipoProduto == Perfume.tipo) ? Perfume.nome : Roupa.nome;
+        if(tipoProduto == Perfume.tipo || tipoProduto == Roupa.tipo){
+            return this.tipoProduto = (tipoProduto == Perfume.tipo) ? Perfume.nome : Roupa.nome;
+        }   
+        return null;
     }
 
     public char getPublico() {
@@ -85,19 +87,41 @@ public abstract class Produto implements Perfume, Roupa {
         this.tipoPublico = tipoPublico;
     }
 
-    public void setTamanhoRoupa(String tamanhoRoupa) {
-        this.tamanhoRoupa = tamanhoRoupa;   
+    public String setTamanhoRoupa(String tamanhoRoupa) {
+        for(String tamanho : Roupa.tamanhos){
+            if(tamanho.equalsIgnoreCase(tamanhoRoupa)){
+                return tamanho;
+            }
+        }
+        return null;
     }
     
     public String getTamanhoRoupa() {
         return tamanhoRoupa;
     }
 
-    public String setTipoPerfume(char tipoPerfume) {
-        return this.tipoPerfume = (tipoPerfume == Perfume.tipoPerfume1) ? Perfume.suave : Perfume.forte;
+    public void getTamanhosRoupa() {
+        for(String tamanho : Roupa.tamanhos){
+            System.out.println(tamanho);
+        }
+    }
+
+    public String setTipoPerfume(Character tipoPerfume) {
+        for(int n = 0; n < Perfume.tipos.length; n++){
+            if(Perfume.tipos[n].equals(tipoPerfume)){
+                return Perfume.tiposFull[n];
+            }
+        }
+        return null;
     }
 
     public String getTipoPerfume() {
         return tipoPerfume;
     }
+
+    public void getTiposPerfume(){
+        for(int n = 0; n < Perfume.tipos.length; n++){
+            System.out.println(Perfume.tipos[n] + " - " + Perfume.tiposFull[n]);
+        }
+    } 
 }

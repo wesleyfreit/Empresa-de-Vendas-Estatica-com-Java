@@ -12,7 +12,7 @@ public class Visualizar {
 
         do {
             System.out.println("\n------------------------\n| PRODUTOS CADASTRADOS |\n------------------------");
-            System.out.print("1 - Ver Todos\n2 - Ver Produtos Estocados\n3 - Ver Valores de Produtos\n4 - Ver Produtos por Tipo\n5 - Voltar\n\nDigite: ");
+            System.out.print("1 - Ver Todos\n2 - Ver Produtos Estocados\n3 - Ver Valores de Produtos\n4 - Ver por Tipo de Produtos\n5 - Voltar\n\nDigite: ");
             switch (scanner.nextInt()) {
                 case 1:
                     if (verTudo(dados))
@@ -120,7 +120,7 @@ public class Visualizar {
             for(Produto p : dados.getProdutos()){
                 if(p.getTipoProduto() == tipo){
                     if(x != 1 && tipo == Perfume.nome){
-                        System.out.println(" -> Intensidade -> Quantidade -> Valor");
+                        System.out.println(" -> Cheiro -> Quantidade -> Valor");
                         System.out.println("-------------------------------------------------------");
                         x = 1;
                     } else if (x != 1 && tipo == Roupa.nome){
