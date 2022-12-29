@@ -46,14 +46,10 @@ public class Atualizar {
                 ilegivel = false;
 
                 System.out.println("\nProduto encontrado.");
-
-                scanner.nextLine();
                 System.out.print("\nInsira o novo nome do produto: ");
+                String newNomeProduto = dados.setFirstUpperCase(scanner.nextLine());
                 
-                String newNomeProduto = scanner.nextLine();
-
                 p.setNomeProduto(newNomeProduto);
-
                 System.out.println("\nNome alterado com sucesso.");
             }
         }

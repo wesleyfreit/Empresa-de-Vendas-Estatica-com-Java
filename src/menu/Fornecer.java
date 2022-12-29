@@ -30,7 +30,6 @@ public class Fornecer {
                 
                 System.out.println("\nReposição concluída.");
             }
-
         }
         if (verification) {
             System.out.println("\nProduto Inexistente.");

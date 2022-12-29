@@ -1,7 +1,8 @@
 package menu;
 
 import java.util.Scanner;
-import registration.type.*;
+
+import registration.type.Roupa;
 import storage.Dados;
 
 public class Cadastrar {
@@ -16,18 +17,17 @@ public class Cadastrar {
         Character publico;
 
         System.out.println("\n---------------------\n| CADASTRAR PRODUTO |\n---------------------");
-        System.out.println("\nInsira os Dados do Produto");
 
         tipoProduto = setTipoProduto(scanner, dados);
 
         scanner.nextLine();
         System.out.print("\nNome: ");
-        nomeProduto = scanner.nextLine();
+        nomeProduto = dados.setFirstUpperCase(scanner.nextLine());
 
-        System.out.print("Valor de Venda: ");
+        System.out.print("Valor de venda: ");
         valor = scanner.nextDouble();
 
-        System.out.print("Quantidade para Estocar: ");
+        System.out.print("Quantidade para estocar: ");
         quantidade = scanner.nextInt();
 
         if(tipoProduto == Roupa.nome){
@@ -41,7 +41,7 @@ public class Cadastrar {
             System.out.print("\nO perfume é feminino(F) ou masculino(M)? ");
         }
 
-        publico = scanner.next().charAt(0);
+        publico = setTipoPublico(scanner, dados);
 
         Dados produto = new Dados(id, nomeProduto, quantidade, valor, tipoProduto, publico, tamanhoTipo);
         dados.cadastroProduto(produto);
@@ -74,7 +74,7 @@ public class Cadastrar {
         boolean run = true;
         do {
             System.out.println("\nQual a numeração ou tamanho da peça?");
-            System.out.print("\n1 - Ver Numerações\n2 - Inserir Numeração\n\nDigite: ");
+            System.out.print("\n1 - Ver Numerações e Tamanhos\n2 - Inserir Numeração ou Tamanho\n\nDigite: ");
             
             switch(scanner.nextInt()){
                 case 1:
@@ -132,5 +132,23 @@ public class Cadastrar {
         } while(run);
 
         return tipoFull;
+    }
+
+    public static Character setTipoPublico(Scanner scanner, Dados dados){
+        Character tipoPublico;
+        boolean run = true;
+        do {
+            tipoPublico = dados.setPublico(scanner.next().charAt(0));
+
+            if(tipoPublico == null){
+                System.out.println("\nValor inválido, tente novamente.");
+                scanner.nextLine();
+                System.out.print("\nO público é feminino(F) ou masculino(M)? ");
+            } else {
+                run = false;
+            }
+        } while(run);
+
+        return tipoPublico;
     }
 }

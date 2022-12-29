@@ -27,7 +27,7 @@ public class Visualizar {
                         System.out.println("\nNão há produtos cadastrados.");
                     break;
                 case 4:
-                    System.out.println("Insira qual tipo de produto deseja ver");
+                    System.out.println("\nInsira qual tipo de produto deseja ver");
                     System.out.print("\n1 - Perfume\n2 - Roupa\n\nDigite: ");
                     if(verPorTipo(scanner.nextInt(), dados))
                         System.out.println("\nNão há produtos cadastrados.");
@@ -48,9 +48,9 @@ public class Visualizar {
         if (dados.sizeArray() > 0) {
             ilegivel = false;
 
-            System.out.println("\n------------------------------------");
+            System.out.println("\n---------------------------------------------------");
             System.out.println("| Tipo -> Público -> Produto -> Quantidade -> Valor");
-            System.out.println("------------------------------------");
+            System.out.println("---------------------------------------------------");
 
             for(Produto p : dados.getProdutos()){
                 System.out.print("| " + p.getNomeProduto());
@@ -59,8 +59,8 @@ public class Visualizar {
                 System.out.print(" -> " + p.getQuantidade());
                 System.out.println(" -> " + p.getValor());
             }
-            System.out.println("------------------------------------");
-            System.out.println("------------------------------------");
+            System.out.println("---------------------------------------------------");
+            System.out.println("---------------------------------------------------");
         }
         return ilegivel;
     }
@@ -71,16 +71,16 @@ public class Visualizar {
         if (dados.sizeArray() > 0) {
             ilegivel = false;
 
-            System.out.println("\n------------------------------------");
+            System.out.println("\n--------------------------");
             System.out.println("| Produto -> Quantidade");
-            System.out.println("------------------------------------");
+            System.out.println("--------------------------");
 
             for (Produto p : dados.getProdutos()) {
                 System.out.print("| " + p.getNomeProduto());
                 System.out.println(" -> " + p.getQuantidade());
             }
-            System.out.println("------------------------------------");
-            System.out.println("------------------------------------");
+            System.out.println("--------------------------");
+            System.out.println("--------------------------");
         }
         return ilegivel;
     }
@@ -90,16 +90,16 @@ public class Visualizar {
         if (dados.sizeArray() > 0) {
             ilegivel = false;
 
-            System.out.println("\n------------------------------------");
+            System.out.println("\n--------------------------");
             System.out.println("| Produto -> Valor");
-            System.out.println("------------------------------------");
+            System.out.println("--------------------------");
 
             for (Produto p : dados.getProdutos()) {
                 System.out.print("| " + p.getNomeProduto());
                 System.out.println(" -> " + p.getValor());
             }
-            System.out.println("------------------------------------");
-            System.out.println("------------------------------------");
+            System.out.println("--------------------------");
+            System.out.println("--------------------------");
         }
         return ilegivel;
     }
@@ -107,15 +107,21 @@ public class Visualizar {
     public static boolean verPorTipo(int n, Dados dados){
         boolean ilegivel = true;
         int x = 0;
+        int reg = 0;
 
-        if(dados.sizeArray() > 0){
+        String tipo = dados.setTipoProduto(n);
+
+        for(Produto p : dados.getProdutos()){
+            if(p.getTipoProduto().equals(tipo)){
+                reg++;
+            }
+        }
+
+        if(dados.sizeArray() > 0 && reg > 0){
             ilegivel = false;
-
-            String tipo = dados.setTipoProduto(n);
 
             System.out.println("\n-------------------------------------------------------");
             System.out.print("| Tipo -> Produto");
-            
             
             for(Produto p : dados.getProdutos()){
                 if(p.getTipoProduto() == tipo){

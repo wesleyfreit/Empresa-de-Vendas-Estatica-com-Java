@@ -83,8 +83,12 @@ public abstract class Produto implements Perfume, Roupa {
         return tipoPublico;
     }
 
-    public void setPublico(char tipoPublico) {
-        this.tipoPublico = tipoPublico;
+    public Character setPublico(Character tipoPublico) {
+        Character tipo = Character.toUpperCase(tipoPublico);
+        if(tipo == 'M' || tipo == 'F'){
+            return tipo;
+        }
+        return null;
     }
 
     public String setTamanhoRoupa(String tamanhoRoupa) {
@@ -107,8 +111,11 @@ public abstract class Produto implements Perfume, Roupa {
     }
 
     public String setTipoPerfume(Character tipoPerfume) {
+
+        Character tipo = Character.toUpperCase(tipoPerfume);
+
         for(int n = 0; n < Perfume.tipos.length; n++){
-            if(Perfume.tipos[n].equals(tipoPerfume)){
+            if(Perfume.tipos[n].equals(tipo)){
                 return Perfume.tiposFull[n];
             }
         }
@@ -123,5 +130,9 @@ public abstract class Produto implements Perfume, Roupa {
         for(int n = 0; n < Perfume.tipos.length; n++){
             System.out.println(Perfume.tipos[n] + " - " + Perfume.tiposFull[n]);
         }
-    } 
+    }
+
+    public String setFirstUpperCase(String nomeProduto){
+        return nomeProduto.toUpperCase().substring(0,1) + nomeProduto.substring(1);
+    }
 }
