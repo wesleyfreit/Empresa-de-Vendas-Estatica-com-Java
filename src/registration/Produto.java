@@ -1,16 +1,15 @@
 package registration;
 
-import registration.type.Perfume;
-import registration.type.Roupa;
+import registration.type.*;
 
 public abstract class Produto implements Perfume, Roupa {
 
     private int id;
     private String nomeProduto;
-    private int quantidade = 0;
+    private int quantidade;
     private double valor;
     private String tipoProduto;
-    private char tipoPublico;
+    private Character tipoPublico;
     private String tamanhoRoupa;
     private String tipoPerfume;
     
@@ -79,7 +78,7 @@ public abstract class Produto implements Perfume, Roupa {
         return null;
     }
 
-    public char getPublico() {
+    public Character getPublico() {
         return tipoPublico;
     }
 
@@ -135,4 +134,6 @@ public abstract class Produto implements Perfume, Roupa {
     public String setFirstUpperCase(String nomeProduto){
         return nomeProduto.toUpperCase().substring(0,1) + nomeProduto.substring(1);
     }
+
+    public void getBusca(String nomeProduto)
 }

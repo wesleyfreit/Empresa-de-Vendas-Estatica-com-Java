@@ -1,11 +1,16 @@
-import storage.Dados;
+package app;
+
 import menu.*;
+import storage.Dados;
+
 import java.util.Scanner;
 
-public class App {
+public class Empresa {
+
+    public static Dados dados = new Dados();
+    public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
-        Dados dados = new Dados();
         boolean run = true;
         int id = 1;
 
@@ -17,20 +22,20 @@ public class App {
 
                 switch (scanner.nextInt()) {
                     case 1:
-                        Vender.venda(dados, scanner);
+                        Vender.venda();
                         break;
                     case 2:
-                        Visualizar.ver(dados, scanner);
+                        Visualizar.ver();
                         break;
                     case 3:
-                        Cadastrar.cadastro(dados, id, scanner);
+                        Cadastrar.cadastro(id);
                         id++;
                         break;
                     case 4:
-                        Fornecer.fornecimento(dados, scanner);
+                        Fornecer.fornecimento();
                         break;
                     case 5:
-                        Atualizar.atualizacao(dados, scanner);
+                        Atualizar.atualizacao();
                         break;
                     case 6:
                         System.out.println("\nPrograma Finalizado.\n");

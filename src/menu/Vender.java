@@ -1,28 +1,29 @@
 package menu;
 
-import java.util.Scanner;
+import app.Empresa;
 import registration.Produto;
-import storage.Dados;
 
 public class Vender {
 
-    public static void venda(Dados dados, Scanner scanner) {
+    public static void venda() {
         boolean run = true;
         
         do{
             System.out.print("\n---------\n| VENDA |\n---------\n1 - Fazer Venda\n2 - Visualizar Lista de Produtos\n3 - Voltar\n\nDigite: ");
             
-            switch(scanner.nextInt()){
+            switch(Empresa.scanner.nextInt()){
                 case 1:
-                    if(dados.sizeArray() > 0) {
+                    
 
-                        if(fazerVenda(dados, scanner))
+                    if(Empresa.dados.sizeArray() > 0) {
+
+                        if(fazerVenda())
                             System.out.println("\nProduto inexistente, tente visualizar a lista.");
                     } else
                         System.out.println("\nNão há produtos cadastrados.");
                     break;
                 case 2:
-                    Visualizar.ver(dados, scanner);
+                    Visualizar.ver();
                     break;
                 case 3:
                     run = false;
@@ -34,17 +35,17 @@ public class Vender {
         } while(run);
     }
 
-    public static boolean fazerVenda(Dados dados, Scanner scanner){
+    public static boolean fazerVenda(){
         boolean ilegivel = true;
 
-        scanner.nextLine();
+        Empresa.scanner.nextLine();
         System.out.print("\nInsira o nome do produto: ");
-        String nomeProduto =  scanner.nextLine();
+        String nomeProduto =  Empresa.scanner.nextLine();
 
         System.out.print("Insira a quantidade: ");
-        int quantidade = scanner.nextInt();
+        int quantidade = Empresa.scanner.nextInt();
 
-        for(Produto p : dados.getProdutos()){
+        for(Produto p : Empresa.dados.getProdutos()){
             if(p.getNomeProduto().equalsIgnoreCase(nomeProduto)){
                 ilegivel = false;
                 

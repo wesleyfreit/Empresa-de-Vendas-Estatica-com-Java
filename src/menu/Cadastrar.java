@@ -1,13 +1,13 @@
 package menu;
 
-import java.util.Scanner;
-
+import app.Empresa;
 import registration.type.Roupa;
 import storage.Dados;
 
 public class Cadastrar {
 
-    public static void cadastro(Dados dados, int id, Scanner scanner) {
+
+    public static void cadastro(int id) {
 
         String nomeProduto;
         int quantidade;
@@ -18,45 +18,45 @@ public class Cadastrar {
 
         System.out.println("\n---------------------\n| CADASTRAR PRODUTO |\n---------------------");
 
-        tipoProduto = setTipoProduto(scanner, dados);
+        tipoProduto = setTipoProduto();
 
-        scanner.nextLine();
+        Empresa.scanner.nextLine();
         System.out.print("\nNome: ");
-        nomeProduto = dados.setFirstUpperCase(scanner.nextLine());
+        nomeProduto = Empresa.dados.setFirstUpperCase(Empresa.scanner.nextLine());
 
         System.out.print("Valor de venda: ");
-        valor = scanner.nextDouble();
+        valor = Empresa.scanner.nextDouble();
 
         System.out.print("Quantidade para estocar: ");
-        quantidade = scanner.nextInt();
+        quantidade = Empresa.scanner.nextInt();
 
         if(tipoProduto == Roupa.nome){
-            tamanhoTipo = setTamanhoRoupa(scanner, dados);
+            tamanhoTipo = setTamanhoRoupa();
 
             System.out.print("\nA peça é feminina(F) ou masculina(M)? "); 
         } else {
-            tamanhoTipo = setTipoPerfume(scanner, dados);
+            tamanhoTipo = setTipoPerfume();
 
-            scanner.nextLine();
+            Empresa.scanner.nextLine();
             System.out.print("\nO perfume é feminino(F) ou masculino(M)? ");
         }
 
-        publico = setTipoPublico(scanner, dados);
+        publico = setTipoPublico();
 
         Dados produto = new Dados(id, nomeProduto, quantidade, valor, tipoProduto, publico, tamanhoTipo);
-        dados.cadastroProduto(produto);
+        Empresa.dados.cadastroProduto(produto);
         
         System.out.println("\nProduto Cadastrado.");
     }
 
-    public static String setTipoProduto(Scanner scanner, Dados dados) {
+    public static String setTipoProduto() {
         String tipo;
         boolean run = true;
 
         do{
-            System.out.println("\nInsira o tipo de produto a ser cadastrado");
+            System.out.println("Insira o tipo de produto a ser cadastrado");
             System.out.print("\n1 - Perfume\n2 - Roupa\n\nDigite: ");
-            tipo = dados.setTipoProduto(scanner.nextInt());
+            tipo = Empresa.dados.setTipoProduto(Empresa.scanner.nextInt());
 
             if(tipo != null){
                 run = false;
@@ -68,7 +68,7 @@ public class Cadastrar {
         return tipo;
     }
 
-    public static String setTamanhoRoupa(Scanner scanner, Dados dados) {
+    public static String setTamanhoRoupa() {
         String numeracao;
         String tamanhoRoupa = null;
         boolean run = true;
@@ -76,15 +76,16 @@ public class Cadastrar {
             System.out.println("\nQual a numeração ou tamanho da peça?");
             System.out.print("\n1 - Ver Numerações e Tamanhos\n2 - Inserir Numeração ou Tamanho\n\nDigite: ");
             
-            switch(scanner.nextInt()){
+            switch(Empresa.scanner.nextInt()){
                 case 1:
-                    dados.getTamanhosRoupa();
+                System.out.println("\n");
+                Empresa.dados.getTamanhosRoupa();
                     break;
                 case 2:
-                    scanner.nextLine();
+                Empresa.scanner.nextLine();
                     System.out.print("\nNumeração ou tamanho da peça: ");
-                    numeracao = scanner.next();
-                    tamanhoRoupa = dados.setTamanhoRoupa(numeracao);
+                    numeracao = Empresa.scanner.next();
+                    tamanhoRoupa = Empresa.dados.setTamanhoRoupa(numeracao);
 
                     if(tamanhoRoupa != null) {
                         run = false;
@@ -101,7 +102,7 @@ public class Cadastrar {
         return tamanhoRoupa;
     }
 
-    public static String setTipoPerfume(Scanner scanner, Dados dados) {
+    public static String setTipoPerfume() {
         Character tipo;
         String tipoFull = null;
         boolean run = true;
@@ -109,15 +110,16 @@ public class Cadastrar {
             System.out.println("\nQual é o tipo de perfume?");
             System.out.print("\n1 - Ver Tipos\n2 - Inserir Tipo\n\nDigite: ");
             
-            switch(scanner.nextInt()){
+            switch(Empresa.scanner.nextInt()){
                 case 1:
-                    dados.getTiposPerfume();
+                System.out.println("\n");
+                Empresa.dados.getTiposPerfume();
                     break;
                 case 2:
-                    scanner.nextLine();
+                Empresa.scanner.nextLine();
                     System.out.print("\nTipo de perfume: ");
-                    tipo = scanner.next().charAt(0);
-                    tipoFull = dados.setTipoPerfume(tipo);
+                    tipo = Empresa.scanner.next().charAt(0);
+                    tipoFull = Empresa.dados.setTipoPerfume(tipo);
 
                     if(tipoFull != null) {
                         run = false;
@@ -134,15 +136,15 @@ public class Cadastrar {
         return tipoFull;
     }
 
-    public static Character setTipoPublico(Scanner scanner, Dados dados){
+    public static Character setTipoPublico(){
         Character tipoPublico;
         boolean run = true;
         do {
-            tipoPublico = dados.setPublico(scanner.next().charAt(0));
+            tipoPublico = Empresa.dados.setPublico(Empresa.scanner.next().charAt(0));
 
             if(tipoPublico == null){
                 System.out.println("\nValor inválido, tente novamente.");
-                scanner.nextLine();
+                Empresa.scanner.nextLine();
                 System.out.print("\nO público é feminino(F) ou masculino(M)? ");
             } else {
                 run = false;

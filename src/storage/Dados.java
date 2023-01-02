@@ -18,8 +18,8 @@ public class Dados extends Produto {
         super(id, nomeProduto, quantidade, valor, tipoProduto, publico, tipoTamanho);
     }
 
-    public void cadastroProduto(Produto produto) {
-        produtos.add(produto);
+    public void cadastroProduto(Produto prod) {
+        produtos.add(prod);
     }
 
     public ArrayList<Produto> getProdutos() {
@@ -28,5 +28,18 @@ public class Dados extends Produto {
 
     public int sizeArray() {
         return produtos.size();
+    }
+
+    public int searchValues(int n){
+        int reg = 0;
+
+        String tipo = setTipoProduto(n);
+
+        for(Produto p : getProdutos()){
+            if(p.getTipoProduto().equals(tipo)){
+                reg++;
+            }
+        }
+        return reg;
     }
 }

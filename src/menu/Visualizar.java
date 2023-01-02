@@ -1,35 +1,34 @@
 package menu;
 
-import java.util.Scanner;
+import app.Empresa;
 import registration.Produto;
 import registration.type.*;
-import storage.Dados;
 
 public class Visualizar {
 
-    public static void ver(Dados dados, Scanner scanner) {
+    public static void ver() {
         boolean run = true;
 
         do {
             System.out.println("\n------------------------\n| PRODUTOS CADASTRADOS |\n------------------------");
-            System.out.print("1 - Ver Todos\n2 - Ver Produtos Estocados\n3 - Ver Valores de Produtos\n4 - Ver por Tipo de Produtos\n5 - Voltar\n\nDigite: ");
-            switch (scanner.nextInt()) {
+            System.out.print("1 - Ver Tudo\n2 - Ver Quantidade de Produtos\n3 - Ver Valores de Produtos\n4 - Ver Produtos pelo Tipo\n5 - Voltar\n\nDigite: ");
+            switch (Empresa.scanner.nextInt()) {
                 case 1:
-                    if (verTudo(dados))
+                    if (verTudo())
                         System.out.println("\nNão há produtos cadastrados.");
                     break;
                 case 2:
-                    if (verQuantidade(dados))
+                    if (verQuantidade())
                         System.out.println("\nNão há produtos cadastrados.");
                     break;
                 case 3:
-                    if (verValor(dados))
+                    if (verValor())
                         System.out.println("\nNão há produtos cadastrados.");
                     break;
                 case 4:
                     System.out.println("\nInsira qual tipo de produto deseja ver");
                     System.out.print("\n1 - Perfume\n2 - Roupa\n\nDigite: ");
-                    if(verPorTipo(scanner.nextInt(), dados))
+                    if(verPorTipo(Empresa.scanner.nextInt()))
                         System.out.println("\nNão há produtos cadastrados.");
                     break;
                 case 5:
@@ -42,17 +41,17 @@ public class Visualizar {
         } while (run);
     }
 
-    public static boolean verTudo(Dados dados){
+    public static boolean verTudo(){
         boolean ilegivel = true;
 
-        if (dados.sizeArray() > 0) {
+        if (Empresa.dados.sizeArray() > 0) {
             ilegivel = false;
 
             System.out.println("\n---------------------------------------------------");
             System.out.println("| Tipo -> Público -> Produto -> Quantidade -> Valor");
             System.out.println("---------------------------------------------------");
 
-            for(Produto p : dados.getProdutos()){
+            for(Produto p : Empresa.dados.getProdutos()){
                 System.out.print("| " + p.getNomeProduto());
                 System.out.print(" -> " + p.getPublico());
                 System.out.print(" -> " + p.getTipoProduto());
@@ -65,17 +64,17 @@ public class Visualizar {
         return ilegivel;
     }
 
-    public static boolean verQuantidade(Dados dados) {
+    public static boolean verQuantidade() {
         boolean ilegivel = true;
 
-        if (dados.sizeArray() > 0) {
+        if (Empresa.dados.sizeArray() > 0) {
             ilegivel = false;
 
             System.out.println("\n--------------------------");
             System.out.println("| Produto -> Quantidade");
             System.out.println("--------------------------");
 
-            for (Produto p : dados.getProdutos()) {
+            for (Produto p : Empresa.dados.getProdutos()) {
                 System.out.print("| " + p.getNomeProduto());
                 System.out.println(" -> " + p.getQuantidade());
             }
@@ -85,16 +84,16 @@ public class Visualizar {
         return ilegivel;
     }
 
-    public static boolean verValor(Dados dados) {
+    public static boolean verValor() {
         boolean ilegivel = true;
-        if (dados.sizeArray() > 0) {
+        if (Empresa.dados.sizeArray() > 0) {
             ilegivel = false;
 
             System.out.println("\n--------------------------");
             System.out.println("| Produto -> Valor");
             System.out.println("--------------------------");
 
-            for (Produto p : dados.getProdutos()) {
+            for (Produto p : Empresa.dados.getProdutos()) {
                 System.out.print("| " + p.getNomeProduto());
                 System.out.println(" -> " + p.getValor());
             }
@@ -104,26 +103,19 @@ public class Visualizar {
         return ilegivel;
     }
     
-    public static boolean verPorTipo(int n, Dados dados){
+    public static boolean verPorTipo(int n){
         boolean ilegivel = true;
         int x = 0;
-        int reg = 0;
 
-        String tipo = dados.setTipoProduto(n);
-
-        for(Produto p : dados.getProdutos()){
-            if(p.getTipoProduto().equals(tipo)){
-                reg++;
-            }
-        }
-
-        if(dados.sizeArray() > 0 && reg > 0){
+        if(Empresa.dados.sizeArray() > 0 && Empresa.dados.searchValues(n) > 0){
             ilegivel = false;
+            
+            String tipo = Empresa.dados.setTipoProduto(n);
 
             System.out.println("\n-------------------------------------------------------");
             System.out.print("| Tipo -> Produto");
             
-            for(Produto p : dados.getProdutos()){
+            for(Produto p : Empresa.dados.getProdutos()){
                 if(p.getTipoProduto() == tipo){
                     if(x != 1 && tipo == Perfume.nome){
                         System.out.println(" -> Cheiro -> Quantidade -> Valor");
