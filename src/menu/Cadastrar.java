@@ -22,7 +22,7 @@ public class Cadastrar {
 
         Empresa.scanner.nextLine();
         System.out.print("\nNome: ");
-        nomeProduto = Empresa.dados.setFirstUpperCase(Empresa.scanner.nextLine());
+        nomeProduto = Empresa.dados.setTittleCaseString(Empresa.scanner.nextLine());
 
         System.out.print("Valor de venda: ");
         valor = Empresa.scanner.nextDouble();

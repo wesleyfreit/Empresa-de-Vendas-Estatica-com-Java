@@ -11,7 +11,8 @@ public class Visualizar {
 
         do {
             System.out.println("\n------------------------\n| PRODUTOS CADASTRADOS |\n------------------------");
-            System.out.print("1 - Ver Tudo\n2 - Ver Quantidade de Produtos\n3 - Ver Valores de Produtos\n4 - Ver Produtos pelo Tipo\n5 - Voltar\n\nDigite: ");
+            System.out.print("1 - Ver Tudo\n2 - Ver Quantidade de Produtos"
+                + "\n3 - Ver Valores de Produtos\n4 - Ver Produtos pelo Tipo\n5 - Voltar\n\nDigite: ");
             switch (Empresa.scanner.nextInt()) {
                 case 1:
                     if (verTudo())

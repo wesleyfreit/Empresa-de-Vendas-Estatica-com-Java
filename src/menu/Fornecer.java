@@ -2,7 +2,6 @@ package menu;
 
 import app.Empresa;
 import registration.Produto;
-
 public class Fornecer {
 
     public static void fornecimento() {

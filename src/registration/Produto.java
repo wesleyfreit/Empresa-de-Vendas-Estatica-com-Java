@@ -17,7 +17,9 @@ public abstract class Produto implements Perfume, Roupa {
     public Produto() {
     }
 
-    public Produto(int id, String nomeProduto, int quantidade, double valor, String tipoProduto, char tipoPublico) {
+    public Produto(int id, String nomeProduto, int quantidade, 
+        double valor, String tipoProduto, char tipoPublico) {
+
         this.id = id;
         this.nomeProduto = nomeProduto;
         this.quantidade = quantidade;
@@ -26,7 +28,10 @@ public abstract class Produto implements Perfume, Roupa {
         this.tipoPublico = tipoPublico;
     }
 
-    public Produto(int id, String nomeProduto, int quantidade, double valor, String tipoProduto, char tipoPublico, String tipoTamanho) {
+    public Produto(int id, String nomeProduto, int quantidade, 
+        double valor, String tipoProduto, char tipoPublico, 
+        String tipoTamanho) {
+
         this(id, nomeProduto, quantidade, valor, tipoProduto, tipoPublico);
         if(tipoProduto == Roupa.nome){
             this.tamanhoRoupa = tipoTamanho;
@@ -73,7 +78,8 @@ public abstract class Produto implements Perfume, Roupa {
 
     public String setTipoProduto(int tipoProduto) {
         if(tipoProduto == Perfume.tipo || tipoProduto == Roupa.tipo){
-            return this.tipoProduto = (tipoProduto == Perfume.tipo) ? Perfume.nome : Roupa.nome;
+            return this.tipoProduto = 
+            (tipoProduto == Perfume.tipo) ? Perfume.nome : Roupa.nome;
         }   
         return null;
     }
@@ -126,14 +132,22 @@ public abstract class Produto implements Perfume, Roupa {
     }
 
     public void getTiposPerfume(){
+
         for(int n = 0; n < Perfume.tipos.length; n++){
             System.out.println(Perfume.tipos[n] + " - " + Perfume.tiposFull[n]);
         }
     }
 
-    public String setFirstUpperCase(String nomeProduto){
-        return nomeProduto.toUpperCase().substring(0,1) + nomeProduto.substring(1);
-    }
+    public String setTittleCaseString(String nomeProduto) {
 
-    public void getBusca(String nomeProduto)
+        String[] words = nomeProduto.split("\\s");
+        StringBuilder stringbuilder = new StringBuilder();
+
+        for(int i = 0; i < words.length; i++){
+            stringbuilder.append(words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase());
+            stringbuilder.append(" ");
+        }
+    
+        return stringbuilder.toString().trim();
+    }
 }
