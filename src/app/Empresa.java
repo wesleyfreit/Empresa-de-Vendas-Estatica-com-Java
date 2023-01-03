@@ -16,7 +16,9 @@ public class Empresa {
         try (Scanner scanner = new Scanner(System.in)) {
             do {
                 System.out.println(
-                        "\n--------\n| MENU |\n--------\n1 - Vender Produto(s)\n2 - Visualizar Produto(s)\n3 - Cadastrar Novo(s) Produto(s)\n4 - Repor Produto(s)\n5 - Editar Produto(s)\n6 - Sair do Programa");
+                    "\n--------\n| MENU |\n--------\n1 - Vender Produto(s)\n2 - Visualizar Produto(s)"
+                    +"\n3 - Cadastrar Novo(s) Produto(s)\n4 - Repor Produto(s)\n5 - Editar Produto(s)"
+                    +"\n6 - Remover Produtos\n7 - Sair do Programa");
                 System.out.print("\nInsira uma opção: ");
 
                 switch (scanner.nextInt()) {
@@ -37,6 +39,9 @@ public class Empresa {
                         Atualizar.atualizacao();
                         break;
                     case 6:
+                        Remover.remocao();
+                        break;
+                    case 7:
                         System.out.println("\nPrograma Finalizado.\n");
                         run = false;
                         scanner.close();
