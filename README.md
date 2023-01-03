@@ -6,7 +6,8 @@
 <ol>
     <li>cadastro de produtos em um estoque;</li>
     <li>exibição dos produtos cadastrados;</li>
-    <li>venda de produtos;</li>
+    <li>venda de produtos do estoque;</li>
     <li>reposição dos produtos do estoque;</li>
     <li>alteração dos produtos do estoque;</li>
+    <li>remoção de produtos do estoque;</li>
 </ol>
