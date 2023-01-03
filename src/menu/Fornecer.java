@@ -1,36 +1,27 @@
 package menu;
 
 import app.Empresa;
+import menu.functions.Busca;
 import registration.Produto;
 public class Fornecer {
 
     public static void fornecimento() {
-        String nomeProduto;
         int quantidade = 0;
+        int idBuscado = Busca.buscaString();
 
-        Empresa.scanner.nextLine();
-        System.out.print("\nInsira o nome do produto que deseja buscar: ");
-        nomeProduto = Empresa.scanner.nextLine();
+        if(idBuscado != -1) {
+            for (Produto p : Empresa.dados.getProdutos()) {
+                if (p.getId() == idBuscado) {
 
-        boolean verification = true;
+                    System.out.print("\nInsira a nova quantidade a repor: ");
+                    quantidade = Empresa.scanner.nextInt();
 
-        for (Produto p : Empresa.dados.getProdutos()) {
-
-            if (p.getNomeProduto().equalsIgnoreCase(nomeProduto)) {
-                
-                verification = false;
-
-                System.out.println("\nProduto Encontrado.");
-                System.out.print("\nInsira a nova quantidade a repor: ");
-                quantidade = Empresa.scanner.nextInt();
-
-                p.setQuantidade(quantidade);
-                
-                System.out.println("\nReposição concluída.");
+                    p.setQuantidade(quantidade);
+                    
+                    System.out.println("\nReposição concluída.");
+                }
             }
-        }
-        if (verification) {
-            System.out.println("\nProduto Inexistente.");
-        }
+        } else
+            System.out.println("\nProduto não encontrado, tente visualizar a lista.");
     }
 }

@@ -147,7 +147,6 @@ public abstract class Produto implements Perfume, Roupa {
             stringbuilder.append(words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase());
             stringbuilder.append(" ");
         }
-    
         return stringbuilder.toString().trim();
     }
 }

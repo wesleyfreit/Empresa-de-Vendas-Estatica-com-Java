@@ -5,8 +5,7 @@ import registration.type.Roupa;
 import storage.Dados;
 
 public class Cadastrar {
-
-
+    
     public static void cadastro(int id) {
 
         String nomeProduto;
@@ -58,13 +57,12 @@ public class Cadastrar {
             System.out.print("\n1 - Perfume\n2 - Roupa\n\nDigite: ");
             tipo = Empresa.dados.setTipoProduto(Empresa.scanner.nextInt());
 
-            if(tipo != null){
+            if(tipo != null)
                 run = false;
-            } else {
-                System.out.println("\nValor inválido, tente novamente.");
-            }
-
+            else 
+                System.out.println("\nValor inválido, tente novamente.\n");
         } while(run);
+        
         return tipo;
     }
 
@@ -78,7 +76,7 @@ public class Cadastrar {
             
             switch(Empresa.scanner.nextInt()){
                 case 1:
-                System.out.println("\n");
+                System.out.println();
                 Empresa.dados.getTamanhosRoupa();
                     break;
                 case 2:
@@ -87,14 +85,13 @@ public class Cadastrar {
                     numeracao = Empresa.scanner.next();
                     tamanhoRoupa = Empresa.dados.setTamanhoRoupa(numeracao);
 
-                    if(tamanhoRoupa != null) {
+                    if(tamanhoRoupa != null)
                         run = false;
-                    } else {
+                    else
                         System.out.println("\nValor inválido, tente novamente.");
-                    }
                     break;
                 default:
-                    System.out.println("Número inválido, tente novamente.");
+                    System.out.println("\nValor inválido, tente novamente.");
                     break;
             }
         } while(run);
@@ -112,7 +109,7 @@ public class Cadastrar {
             
             switch(Empresa.scanner.nextInt()){
                 case 1:
-                System.out.println("\n");
+                System.out.println();
                 Empresa.dados.getTiposPerfume();
                     break;
                 case 2:
@@ -128,7 +125,7 @@ public class Cadastrar {
                     }
                     break;
                 default:
-                    System.out.println("Número inválido, tente novamente.");
+                    System.out.println("\nValor inválido, tente novamente.");
                     break;
             }
         } while(run);

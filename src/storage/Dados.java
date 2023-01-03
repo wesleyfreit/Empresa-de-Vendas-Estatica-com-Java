@@ -61,15 +61,4 @@ public class Dados extends Produto {
         .toLowerCase().contains(nome))
         .collect(Collectors.toList());
     }
-
-    public String busca(String nome, int n) {
-        List<Produto> resultadoBusca = busca(nome);
-
-        for(Produto p : resultadoBusca){
-            if(p.getId() == n){
-                return p.getNomeProduto();
-            }
-        }
-        return null;
-    }
 }

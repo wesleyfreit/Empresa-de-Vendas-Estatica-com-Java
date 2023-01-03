@@ -4,16 +4,15 @@ import menu.*;
 import storage.Dados;
 
 import java.util.Scanner;
-
 public class Empresa {
 
     public static Dados dados = new Dados();
     public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-
         boolean run = true;
         int id = 1;
-
+        boolean run = true;
+        
         try (Scanner scanner = new Scanner(System.in)) {
             do {
                 System.out.println(
